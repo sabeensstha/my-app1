@@ -1,6 +1,16 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { AppProps } from "next/app";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const isProduction = process.env.NODE_ENV === "production";
+
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+  return (<>
+    <Component {...pageProps} />
+    {
+        process.env.NODE_ENV === 'production' &&
+          <GoogleAnalytics />
+      }
+  </>)
+};
+
+export default App;
